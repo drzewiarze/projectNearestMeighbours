@@ -1,31 +1,31 @@
 import matplotlib
-matplotlib.use('TkAgg')
+matplotlib.use('TkAgg') # Ustawia backend Matplotlib na "TkAgg" (do wizualizacji).
 import numpy as np
 from collections import Counter
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
-import time
-import unittest
+from sklearn.neighbors import KNeighborsClassifier # Biblioteczny KNN.
+from sklearn.datasets import make_classification # Generowanie danych testowych.
+from sklearn.model_selection import train_test_split # Podział danych na treningowe i testowe.
+from sklearn.metrics import accuracy_score # Do oceny dokładności klasyfikatora.
+import matplotlib.pyplot as plt  
+import time # Do mierzenia czasu wykonania.
+import unittest # Do pisania testów jednostkowych.
 
 
 # Implementacja algorytmu Nearest Neighbours
 class NearestNeighbours:
     def __init__(self, k=3):
-        self.k = k
-        self.data = None
-        self.labels = None
+        self.k = k                # Liczba najbliższych sąsiadów do wzięcia pod uwagę.
+        self.data = None          # Przechowuje dane treningowe.
+        self.labels = None        # Przechowuje etykiety klas.
 
-    def fit(self, data, labels):
+    def fit(self, data, labels):    # Funkcja trenująca
         self.data = np.array(data)
         self.labels = np.array(labels)
 
-    def _euclidean_distance(self, point1, point2):
+    def _euclidean_distance(self, point1, point2):    # Obliczanie odległości euklidesowej
         return np.sqrt(np.sum((point1 - point2) ** 2))
 
-    def predict(self, test_data):
+    def predict(self, test_data):    # Przewidywanie klasy dla danych testowych
         predictions = []
         for test_point in test_data:
             distances = []
@@ -40,7 +40,7 @@ class NearestNeighbours:
 
 
 # Generowanie danych testowych
-def generate_data():
+def generate_data():    # Generowanie danych sztucznych.
     X, y = make_classification(n_samples=1000, n_features=2, n_informative=2,
                                n_redundant=0, n_clusters_per_class=1, random_state=42)
     return train_test_split(X, y, test_size=0.3, random_state=42)
