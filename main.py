@@ -158,6 +158,6 @@ class TestNearestNeighbours(unittest.TestCase):
         self.assertTrue(np.array_equal(predictions, expected))
 
 
-if __name__ == "__main__":
+//if __name__ == "__main__":
     compare_algorithms()
-    unittest.main(argv=[''], exit=False)
+    //unittest.main(argv=[''], exit=False)
